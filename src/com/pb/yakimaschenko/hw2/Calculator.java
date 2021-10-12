@@ -21,7 +21,6 @@ public class Calculator {
         System.out.println("Введите арифметический знак: ");
         String valuesign = sign.next();
 
-        // Дописать switch
         switch (valuesign){
             case "+":
                 System.out.println(valueOperand1 + valueOperand2);
