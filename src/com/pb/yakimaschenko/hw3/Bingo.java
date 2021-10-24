@@ -16,7 +16,7 @@ public class Bingo {
         //получаем рандомное число
         Random random = new Random();
         int number = random.nextInt(100);
-        System.out.println("number: " + number);
+//        System.out.println("number: " + number);
 
         //получаем ввод от пользователя
         Scanner in = new Scanner(System.in);
