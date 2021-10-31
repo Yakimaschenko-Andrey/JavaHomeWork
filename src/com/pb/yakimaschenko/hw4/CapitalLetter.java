@@ -4,22 +4,24 @@ import java.util.Scanner;
 
 public class CapitalLetter {
 
-    static String function() {
+    static char[] function() {
 
         //Получаю ввод строки от пользователя
         System.out.println("Введите предложение:");
         Scanner Stroka = new Scanner(System.in);
         String Strokavalue = Stroka.nextLine();
 
-        String[] words = Strokavalue.split(" ");
-        for (int i = 0; i < words.length; i++)
-        {
-            words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
-        }
-        Strokavalue = String.join(" ", words);
+        char[] words = Strokavalue.toCharArray();
 
-//        System.out.println(words[i]);
-        return Strokavalue;
+        for (int i = 1; i < words.length; i++){
+            if(words[i - 1] == ' ' && words[i] != ' ')
+                words[i] = Character.toUpperCase(words[i]);
+        }
+        if (words[0] != ' ')
+            words[0] = Character.toUpperCase(words[0]);
+        System.out.println(words);
+
+        return words;
     }
 
     public static void main(String[] args) {
