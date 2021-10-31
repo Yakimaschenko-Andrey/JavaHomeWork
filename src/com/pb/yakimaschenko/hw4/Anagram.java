@@ -59,7 +59,6 @@ public class Anagram {
                }
 
                return true;
-
     }
 
     public static void main(String[] args) {
