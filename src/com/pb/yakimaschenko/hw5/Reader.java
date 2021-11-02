@@ -84,15 +84,19 @@ public class Reader {
     public void takeBook(Book... books) {
         System.out.println(fio + " взял следующие книги:");
         for (Book book : books) {
-            System.out.println(book.getNameBook() + ", автор - " + book.getBookAuthor());
+            System.out.println(book.getNameBook() + " (" + " автор - " + book.getBookAuthor() + ", " + book.getPublicYear() +" г." +")");
         }
         System.out.println();
     }
 
 
-    public void returnBook(int number) {
-        System.out.println(fio + " вернул " + number+ " книги.");
-    }
+//    public void returnBook(int number) {
+//        System.out.println(fio + " вернул " + number+ " книги.");
+//    }
+public int returnBook(int number) {
+    System.out.println(fio + " вернул " + number + " книги.");
+    return bookCount;
+}
 
     public void returnBook(String... books) {
         System.out.println(fio + " вернул следующие книги:");
@@ -105,7 +109,7 @@ public class Reader {
     public void returnBook(Book... books) {
         System.out.println(fio + " вернул следующие книги:");
         for (Book book : books) {
-            System.out.println(book.getNameBook() + ", автор - " + book.getBookAuthor());
+            System.out.println(book.getNameBook() + " (" + " автор - " + book.getBookAuthor() + ", " + book.getPublicYear() +" г." +")");
         }
         System.out.println();
     }
