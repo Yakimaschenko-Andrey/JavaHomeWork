@@ -7,6 +7,9 @@ public class Book {
    private String PublicYear;
 
 
+
+
+
     public Book(String NameBook, String BookAuthor, String PublicYear) {
         this.NameBook = NameBook;
         this.BookAuthor = BookAuthor;
@@ -37,7 +40,8 @@ public class Book {
         PublicYear = publicYear;
     }
 
-    public String getInfo() {
+//String NameBook, String BookAuthor, String PublicYear
+    public String takeBook() {
         return "{" + "NameBook='" + NameBook + '\'' +", BookAuthor='" + BookAuthor + '\'' + ", PublicYear='" + PublicYear +
                 '}';
     }

@@ -6,14 +6,21 @@ public class Reader {
     private String faculty;
     private String birthDate;
     private String phoneNum;
+    static int bookCount = 0;
 
-    public Reader(String fio, int numCard, String faculty, String birthDate, String phoneNum){
+//    public int getBookCount(){
+//        return bookCount;
+//    }
+
+    public Reader(String fio, int numCard, String faculty, String birthDate, String phoneNum) {
         this.fio = fio;
         this.numCard = numCard;
         this.faculty = faculty;
         this.birthDate = birthDate;
         this.phoneNum = phoneNum;
-
+//        bookCount++;
+    }
+    public Reader() {
     }
 
     public String getFio() {
@@ -56,9 +63,53 @@ public class Reader {
         this.phoneNum = phoneNum;
     }
 
-    public String takeBook() {
-        return "{" + fio + '\'' + "взял" + numCard + '\'' + "книги" + '}';
+    public String takeReader() {
+        return "{" + "fio='" + fio + '\'' +", numCard='" + numCard + '\'' + ", faculty='" + faculty + ", birthDate='" + birthDate + ", phoneNum='" + phoneNum +
+                '}';
+    }
+
+    public int takeBook(int number) {
+        System.out.println(fio + " взял " + number + " книги.");
+        return bookCount;
+    }
+
+    public void takeBook(String... books){
+        System.out.println(fio + " взял следующие книги:");
+        for(String book :books){
+            System.out.print(book);
+        }
+        System.out.println();
+    }
+
+    public void takeBook(Book... books) {
+        System.out.println(fio + " взял следующие книги:");
+        for (Book book : books) {
+            System.out.println(book.getNameBook() + ", автор - " + book.getBookAuthor());
+        }
+        System.out.println();
+    }
+
+
+    public void returnBook(int number) {
+        System.out.println(fio + " вернул " + number+ " книги.");
+    }
+
+    public void returnBook(String... books) {
+        System.out.println(fio + " вернул следующие книги:");
+        for (String book : books) {
+            System.out.println(book);
+        }
+        System.out.println();
+    }
+
+    public void returnBook(Book... books) {
+        System.out.println(fio + " вернул следующие книги:");
+        for (Book book : books) {
+            System.out.println(book.getNameBook() + ", автор - " + book.getBookAuthor());
+        }
+        System.out.println();
     }
 
 }
+
 
