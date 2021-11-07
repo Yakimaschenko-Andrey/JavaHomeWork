@@ -1,6 +1,8 @@
 package com.pb.yakimaschenko.hw6;
 
 
+import java.util.Objects;
+
 public class Animal {
     private String food;
     private String location;
@@ -56,9 +58,18 @@ public class Animal {
     public void food() {
         System.out.println( "Обычно ест " + this.food);
     }
-    public String getAnimalName(){
-        return name;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return Objects.equals(getFood(), animal.getFood()) && Objects.equals(getLocation(), animal.getLocation()) && Objects.equals(getName(), animal.getName());
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFood(), getLocation(), getName());
+    }
 }

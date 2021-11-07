@@ -17,21 +17,6 @@ public class VetСlinic {
 //            System.out.println(x.getName());
 //        }
 
-//        Cat cat = new Cat();
-//        cat.setName("Васыль");
-//        cat.setFood("Вискас");
-//        cat.setLocation("Дом");
-
-//        Dog dog = new Dog();
-//        dog.setName("Шарко");
-//        dog.setFood("Корм для собак");
-//        dog.setLocation("Вольер");
-
-//        Horse horse = new Horse();
-//        horse.setName("Буцефал");
-//        horse.setFood("Сено");
-//        horse.setLocation("Загон");
-
         dog.sleep();
         dog.makeNoise();
         horse.makeNoise();
