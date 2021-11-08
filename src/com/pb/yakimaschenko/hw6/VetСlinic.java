@@ -1,10 +1,13 @@
 package com.pb.yakimaschenko.hw6;
 
-import com.pb.yakimaschenko.hw5.Book;
-import com.pb.yakimaschenko.hw5.Reader;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.concurrent.Callable;
 
 public class VetСlinic {
-    public static void main(String[] args){
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
 
         Cat cat = new Cat(); //("Васыль","Вискас","Дом");
@@ -36,7 +39,18 @@ public class VetСlinic {
         System.out.println("hashCode dog: " + dog.hashCode());
         System.out.println("hashCode horse: " + horse.hashCode());
 
+        Veterinarian veterinar = new Veterinarian();
+        Class clazz = veterinar.getClass();
+        System.out.println(clazz.getName());
+        System.out.println(Arrays.toString(clazz.getMethods()));
 
-
+        Class veterinarClazz = Class.forName("com.pb.yakimaschenko.hw6.Veterinarian");
+        Constructor constr = veterinarClazz.getConstructor();
+        Object obj = constr.newInstance();
+        if (obj instanceof Veterinarian){
+            for (int i = 0; i <animals.length; i++){
+                ((Veterinarian)obj).treatAnimal(animals[i]);
+            }
+        }
     }
 }
