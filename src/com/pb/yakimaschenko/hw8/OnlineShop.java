@@ -24,9 +24,11 @@ public class OnlineShop {
             auth.signUp(valuelogiin1,valuepassword1,valuepassword2);
         }catch (WrongLoginException | WrongPasswordException e){
             e.printStackTrace();
+            return;
 //        }catch (WrongPasswordException e){
 //           System.out.println("Пароль не соответствует требованиям: " + e.getMessage());
         }
+
 
 //        auth.signUp(valuelogiin1,valuepassword1,valuepassword2);
 
