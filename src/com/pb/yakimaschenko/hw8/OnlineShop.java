@@ -11,7 +11,7 @@ public class OnlineShop {
         System.out.println("Зарегистрируйтесь на сайте ");
         //Принимаю логин для регистрации
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите логин для регистрации: ");
+        System.out.println("Введите, пожалуйста, логин для регистрации: ");
         String valuelogiin1 = scan.next();
         System.out.println("Введите пароль: ");
         String valuepassword1 = scan.next();
@@ -30,22 +30,15 @@ public class OnlineShop {
 
         auth.signUp(valuelogiin1,valuepassword1,valuepassword2);
 
-        System.out.println("--------------------------");
-        System.out.println("Регистрация проведена успешно");
-        System.out.println("--------------------------");
-
-
-
-
-
         //Принимаю логин и пароль для авторизации
-        System.out.println("Введите логин и пароль для авторизации");
+        System.out.println("Введите,пожалуйста, логин и пароль для авторизации");
         Scanner scan2 = new Scanner(System.in);
-        System.out.println("Введите логин для регистрации: ");
+        System.out.println("Введите логин: ");
         String valuelogiinAuth = scan2.next();
         System.out.println("Введите пароль: ");
         String valuepasswordAuth = scan2.next();
 
+        auth.signIn(valuelogiinAuth,valuepasswordAuth);
 
 
 

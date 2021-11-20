@@ -41,14 +41,26 @@ public class Auth {
             throw new WrongPasswordException("Пароль не соответствует требованиям! " +
                     "Пароль не соответствует ранее введенному при регистрации");
         }
+        if(!this.password.equals(null)&& !this.login.equals(null)){
+            System.out.println("--------------------------");
+            System.out.println("Регистрация проведена успешно");
+            System.out.println("--------------------------");
+        }
 
 
         }
 
 
 
+    public void signIn(String login, String password) throws WrongLoginException{
+        if (this.login.equals(login) && this.password.equals(password)){
+            System.out.println("--------------------------");
+            System.out.println("Вход выполнен успешно");
+            System.out.println("--------------------------");
+        }else {
+            throw new WrongLoginException("Логин или пароль указаны неправильно. Пожалуйста, повторите попытку");
+        }
 
-    private void signIn(String login, String password){
 
     }
 
