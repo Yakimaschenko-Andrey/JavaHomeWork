@@ -18,17 +18,17 @@ public class OnlineShop {
         System.out.println("Повторите пароль: ");
         String valuepassword2 = scan.next();
 
- //       try {
- //           Auth auth = new Auth(valuelogiin1,valuepassword1,valuepassword2);
- //       }catch (WrongLoginException e){
- //           System.out.println("Логин не соответствует требованиям: " + e.getMessage());
- //       }catch (WrongPasswordException e){
- //           System.out.println("Пароль не соответствует требованиям: " + e.getMessage());
- //       }
-
         Auth auth = new Auth(valuelogiin1,valuepassword1,valuepassword2);
 
-        auth.signUp(valuelogiin1,valuepassword1,valuepassword2);
+        try {
+            auth.signUp(valuelogiin1,valuepassword1,valuepassword2);
+        }catch (WrongLoginException | WrongPasswordException e){
+            e.printStackTrace();
+//        }catch (WrongPasswordException e){
+//           System.out.println("Пароль не соответствует требованиям: " + e.getMessage());
+        }
+
+//        auth.signUp(valuelogiin1,valuepassword1,valuepassword2);
 
         //Принимаю логин и пароль для авторизации
         System.out.println("Введите,пожалуйста, логин и пароль для авторизации");
@@ -38,8 +38,11 @@ public class OnlineShop {
         System.out.println("Введите пароль: ");
         String valuepasswordAuth = scan2.next();
 
-        auth.signIn(valuelogiinAuth,valuepasswordAuth);
-
+        try {
+            auth.signIn(valuelogiinAuth,valuepasswordAuth);
+        }catch (WrongLoginException  e) {
+            e.printStackTrace();
+        }
 
 
 
