@@ -33,11 +33,12 @@ public class ContactsMain {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Телефонный справочник");
-        System.out.println("Для совершения действия укажите соответствующую цифру:");
         System.out.println("1. Добавить/Сохранить контакт");
         System.out.println("2. Найти контакт в телефонной книге");
         System.out.println("3. Редактировать контакт");
         System.out.println("4. Удалить контакт");
+
+        System.out.println("Для совершения действия укажите соответствующую цифру:");
 
 
         int choice = in.nextInt(); //выберете что хотите сделать
