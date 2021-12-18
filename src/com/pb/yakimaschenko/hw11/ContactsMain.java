@@ -5,9 +5,12 @@ import com.pb.yakimaschenko.hw8.WrongLoginException;
 import com.pb.yakimaschenko.hw8.WrongPasswordException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static com.pb.yakimaschenko.hw11.PhoneBook.addContacts;
 
 //import static com.pb.yakimaschenko.hw11.PhoneBook.saveContact;
 
@@ -28,6 +31,7 @@ public class ContactsMain {
 //        String valueAddr = scan.next();
 //
 //        List<String> list = new ArrayList<>();
+        List<Contacts> listCont = new ArrayList<>();
 
 
 
@@ -54,7 +58,8 @@ public class ContactsMain {
         String valuePhone = in.next();
         System.out.println("Введите адресс: ");
         String valueAddr = in.next();
- //       saveContact(valueFio, valueBrthDay, valuePhone, valueAddr);
+//        addContacts(valueFio, valueBrthDay, valuePhone, valueAddr);
+                listCont.add (new Contacts (valueFio, valueBrthDay, valuePhone, valueAddr, LocalDateTime.now()));
                 break;
             case 2:
                 System.out.println("Введите ФИО контакта для поиска: ");
@@ -71,6 +76,7 @@ public class ContactsMain {
             default:
                 break;
         }
+
     }
     public static void saveContact(String fio, LocalDate dateOfBirth, String phone, String address, String dateModify) {
         System.out.println("Контакт сохранен:"+ fio + " " + dateOfBirth + " " + phone + " " + address + " " + dateModify);

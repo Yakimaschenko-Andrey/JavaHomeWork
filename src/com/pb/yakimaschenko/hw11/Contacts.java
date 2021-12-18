@@ -2,18 +2,19 @@ package com.pb.yakimaschenko.hw11;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Contacts implements Serializable {
 
     private final static long serialVersionUID = 42;
 
     private String fio;
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     private String phone;
     private String address;
-    private LocalDate dateModify;
+    private LocalDateTime dateModify;
 
-    public Contacts(String fio, LocalDate dateOfBirth, String phone, String address, LocalDate dateModify) {
+    public Contacts(String fio, String dateOfBirth, String phone, String address, LocalDateTime dateModify) {
         this.fio = fio;
         this.dateOfBirth = dateOfBirth;
         this.phone = phone;
@@ -32,6 +33,7 @@ public class Contacts implements Serializable {
 //        this.dateOfBirth = dateOfBirth;
 //    }
 
+
     public String getFio() {
         return fio;
     }
@@ -40,11 +42,11 @@ public class Contacts implements Serializable {
         this.fio = fio;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -64,11 +66,11 @@ public class Contacts implements Serializable {
         this.address = address;
     }
 
-    public LocalDate getDateModify() {
+    public LocalDateTime getDateModify() {
         return dateModify;
     }
 
-    public void setDateModify(LocalDate dateModify) {
+    public void setDateModify(LocalDateTime dateModify) {
         this.dateModify = dateModify;
     }
 
