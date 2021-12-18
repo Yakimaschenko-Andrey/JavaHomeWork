@@ -76,11 +76,12 @@ public class ContactsMain {
             default:
                 break;
         }
-
+//        for(String s : listCont) {
+//            System.out.println(s);
+//        }
     }
     public static void saveContact(String fio, LocalDate dateOfBirth, String phone, String address, String dateModify) {
         System.out.println("Контакт сохранен:"+ fio + " " + dateOfBirth + " " + phone + " " + address + " " + dateModify);
-        //добавляем ССЫЛКУ на объект в массив
 
     }
 }
