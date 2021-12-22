@@ -1,13 +1,11 @@
-package com.pb.yakimaschenko.hw11;
-
-import java.time.LocalDate;
+package com.pb.yakimaschenko.hw12;
 
 //import com.fasterxml.jackson.core.JsonParser;
 //import com.fasterxml.jackson.databind.DeserializationContext;
 //import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
-import java.io.IOException;
-public class LocalDateDeserializable{
+
+public class LocalDateDeserializable {
 //public class LocalDateDeserializable extends StdDeserializer<LocalDate>{
 
 

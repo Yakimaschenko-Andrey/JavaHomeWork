@@ -1,10 +1,12 @@
-package com.pb.yakimaschenko.hw11;
+package com.pb.yakimaschenko.hw12;
+
+import com.pb.yakimaschenko.hw11.Contacts;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhoneBook  extends Contacts{
+public class PhoneBook extends Contacts {
     private static List<String> listCont = new ArrayList<>();
 
     public PhoneBook(String fio, String dateOfBirth, List<String> phone, String address, LocalDateTime dateModify) {

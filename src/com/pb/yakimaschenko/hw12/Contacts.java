@@ -1,4 +1,4 @@
-package com.pb.yakimaschenko.hw11;
+package com.pb.yakimaschenko.hw12;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,7 +11,7 @@ public class Contacts implements Serializable {
 
     private String fio;
     private String dateOfBirth;
-//    private String phone;
+    //    private String phone;
     private List<String> phone;
     private String address;
     private LocalDateTime dateModify;
