@@ -4,19 +4,25 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class Contacts implements Serializable {
 
     private final static long serialVersionUID = 42;
 
+    private int id;
     private String fio;
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
     //    private String phone;
     private List<String> phone;
     private String address;
     private LocalDateTime dateModify;
 
-    public Contacts(String fio, String dateOfBirth, List<String> phone, String address, LocalDateTime dateModify) {
+    public Contacts(int id, String name, LocalDate dateOfBirth, List<String> numbers, String address) {
+    }
+
+    public Contacts(int id, String fio, LocalDate dateOfBirth, List<String> phone, String address, LocalDateTime dateModify) {
+        this.id = id;
         this.fio = fio;
         this.dateOfBirth = dateOfBirth;
         this.phone = phone;
@@ -24,17 +30,13 @@ public class Contacts implements Serializable {
         this.dateModify = dateModify;
     }
 
-//    public Contacts(String name, String phone) {
-//        this.fio = name;
-//        this.phone = phone;
-//    }
-//
-//    public Contacts(String name, String phone, LocalDate dateOfBirth) {
-//        this.fio = name;
-//        this.phone = phone;
-//        this.dateOfBirth = dateOfBirth;
-//    }
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFio() {
         return fio;
@@ -44,15 +46,15 @@ public class Contacts implements Serializable {
         this.fio = fio;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public List<String>  getPhone() {
+    public List<String> getPhone() {
         return phone;
     }
 
@@ -75,6 +77,14 @@ public class Contacts implements Serializable {
     public void setDateModify(LocalDateTime dateModify) {
         this.dateModify = dateModify;
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        com.pb.yakimaschenko.hw11.Contacts contact = (com.pb.yakimaschenko.hw11.Contacts) o;
+//        return id == contact.id && Objects.equals(fio, contact.fio) && Objects.equals(dateOfBirth, contact.dateOfBirth) && Objects.equals(phone, contact.phone) && Objects.equals(address, contact.address) && Objects.equals(dateModify, contact.dateModify);
+//    }
 
     @Override
     public String toString() {

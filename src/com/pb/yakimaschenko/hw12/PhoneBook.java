@@ -2,32 +2,111 @@ package com.pb.yakimaschenko.hw12;
 
 import com.pb.yakimaschenko.hw11.Contacts;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class PhoneBook  {
-    private static List<String> listCont = new ArrayList<>();
+public class PhoneBook {
+    private static List<com.pb.yakimaschenko.hw11.Contacts> listCont = new ArrayList<>();
+    private static final Scanner scan = new Scanner(System.in);
 
-
-
-    //поиск номера телефона
-    public static void findContacts(String fio) {
-        System.out.println("");
+    //Добавление контакта
+    public static void addContact() {
+        System.out.println("Введите ФИО: ");
+        String name = scan.nextLine();
+        System.out.println("Введите дату рождения: ");
+        String dateOfBirthStr = scan.nextLine();
+        LocalDate dateOfBirth = LocalDate.parse(dateOfBirthStr);
+        System.out.println("Введите номер телефона: ");
+        List<String> numbers = inputPhoneNumbers();
+        System.out.println("Введите адрес: ");
+        String address = scan.nextLine();
+        int id = getNextId();
+        com.pb.yakimaschenko.hw11.Contacts contact = new com.pb.yakimaschenko.hw11.Contacts(id, name, dateOfBirth, numbers, address);
+        listCont.add(contact);
     }
 
-    //addPB - добавляет запись по заданным номеру телефона и фамилии
-    public static void addContacts() {
-        for (String p: listCont) {
-            listCont.add(p);
-            System.out.println(p);
+    private static int getNextId() {
+        if (listCont.isEmpty()) {
+            return 1;
+        }
+        com.pb.yakimaschenko.hw11.Contacts maxIdContact = Collections.max(listCont, new Comparator<com.pb.yakimaschenko.hw11.Contacts>() {
+            @Override
+            public int compare(com.pb.yakimaschenko.hw11.Contacts c1, com.pb.yakimaschenko.hw11.Contacts c2) {
+                return Integer.compare(c1.getId(), c2.getId());
+            }
+        });
+        return maxIdContact.getId() + 1;
+    }
+
+    //поиск номера телефона
+    private static com.pb.yakimaschenko.hw11.Contacts findContacts(int id) {
+
+        for (com.pb.yakimaschenko.hw11.Contacts contact : listCont) {
+            if (id == contact.getId()) {
+                return contact;
+            }
+        }
+        return null;
+    }
+
+    private static List<String> inputPhoneNumbers() {
+        List<String> numbers = new ArrayList<>();
+        while (true) {
+            System.out.println("Введите номер телефона (0 - для выхода): ");
+            String number = scan.nextLine();
+            if ("0".equals(number)) {
+                return numbers;
+            }
+            numbers.add(number);
         }
     }
 
     //delPB - удаляет запись по номеру телефона
-    private static void delContacts(String fio) {
-        listCont.remove(fio);
+
+    public static void delContacts() {
+        System.out.println("Введите id контакта для удаления: ");
+        int id = Integer.parseInt(scan.nextLine());
+        com.pb.yakimaschenko.hw11.Contacts contact = findContacts(id);
+        if (contact == null) {
+            System.out.println("Контакт не найден");
+            return;
+        }
+        listCont.remove(contact);
+        System.out.println("Контакт удален");
     }
+
+    public static void sortByIdAndPrint() {
+        listCont.sort(new Comparator<com.pb.yakimaschenko.hw11.Contacts>() {
+            @Override
+            public int compare(com.pb.yakimaschenko.hw11.Contacts c1, com.pb.yakimaschenko.hw11.Contacts c2) {
+                return Integer.compare(c1.getId(), c2.getId());
+            }
+        });
+    }
+
+
+    public static void saveToFile() throws IOException {
+        File file = Paths.get("contacts.data").toFile();
+        FileOutputStream outputStream = new FileOutputStream(file);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(listCont);
+        System.out.println("Файл записан! ");
+        objectOutputStream.close();
+        System.out.println(new String(Files.readAllBytes(Paths.get("contacts.data"))));
+    }
+    public static void loadFromFile() throws IOException, ClassNotFoundException {
+        ArrayList<com.pb.yakimaschenko.hw11.Contacts> newContacts = new ArrayList<>();
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("contacts.data"));
+        newContacts = (ArrayList<com.pb.yakimaschenko.hw11.Contacts>)objectInputStream.readObject();
+        for (Contacts c : newContacts) {
+            System.out.println(c.toString());
+        }
+    }
+
 
 
 }

@@ -12,7 +12,7 @@ public class Contacts implements Serializable {
 
     private int id;
     private String fio;
-    private LocalDate dateOfBirth;
+    public LocalDate dateOfBirth;
 //    private String phone;
     private List<String> phone;
     private String address;
