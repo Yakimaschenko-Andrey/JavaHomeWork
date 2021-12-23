@@ -1,101 +1,82 @@
 package com.pb.yakimaschenko.hw11;
 
-import com.pb.yakimaschenko.hw8.Auth;
-import com.pb.yakimaschenko.hw8.WrongLoginException;
-import com.pb.yakimaschenko.hw8.WrongPasswordException;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.pb.yakimaschenko.hw11.PhoneBook.addContacts;
-
-//import static com.pb.yakimaschenko.hw11.PhoneBook.saveContact;
 
 
 public class ContactsMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-//        System.out.println("Введите данные по контакту ");
-//        //Принимаю данные по контакту
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("Введите, пожалуйста, ФИО нового контакта: ");
-//        String valueFio = scan.next();
-//        System.out.println("Введите дату рождения: ");
-//        String valueBrthDay = scan.next();
-//        System.out.println("Введите номер телефона: ");
-//        String valuePhone = scan.next();
-//        System.out.println("Введите адресс: ");
-//        String valueAddr = scan.next();
-//
-//        List<String> list = new ArrayList<>();
-        List<Contacts> listCont = new ArrayList<>();
-
-//        List<Contacts> listCont = inputPhoneNumbers();
-
+         final List<Contacts> listCont = new ArrayList<>();
 
 
         Scanner in = new Scanner(System.in);
         System.out.println("Телефонный справочник");
         System.out.println("1. Добавить/Сохранить контакт");
-        System.out.println("2. Найти контакт в телефонной книге");
-        System.out.println("3. Редактировать контакт");
-        System.out.println("4. Удалить контакт");
+        System.out.println("2. Отобразить контакты");
+        System.out.println("3. Найти контакт в телефонной книге");
+        System.out.println("4. Редактировать контакт");
+        System.out.println("5. Удалить контакт");
+        System.out.println("6. Сохранить контакты в файл");
+        System.out.println("7. Выгрузить контакты из файла");
+
 
         System.out.println("Для совершения действия укажите соответствующую цифру:");
-
 
         int choice = in.nextInt(); //выберете что хотите сделать
         in.nextLine();
 
         switch(choice){
             case 1:
-        System.out.println("Введите ФИО нового контакта: ");
-        String valueFio = in.next();
-        System.out.println("Введите дату рождения: ");
-        String valueBrthDay = in.next();
-        System.out.println("Введите номер телефона: ");
-        String valuePhone = in.next();
-        System.out.println("Введите адресс: ");
-        String valueAddr = in.next();
-//        addContacts(valueFio, valueBrthDay, valuePhone, valueAddr);
-//                listCont.add (new Contacts (valueFio, valueBrthDay, valuePhone, valueAddr, LocalDateTime.now()));
+                PhoneBook.addContact();
+//        System.out.println("Введите ФИО нового контакта: ");
+//        String valueFio = in.nextLine();
+//        System.out.println("Введите дату рождения: (дату введите в формате 1992-01-01)");
+//        LocalDate valueBrthDay = LocalDate.parse(in.next());
+//        System.out.println("Введите номер телефона: ");
+//        String valuePhone = in.next();
+//        System.out.println("Введите адресс: ");
+//        String valueAddr = in.next();
+//        LocalDateTime dateModify = LocalDateTime.now();
+//        PhoneBook.addContact();
                 break;
             case 2:
-                System.out.println("Введите ФИО контакта для поиска: ");
-                valueFio = in.nextLine();
-                System.out.println();
+                System.out.println("Сортировка");
+                System.out.println("1. По id");
+                System.out.print("Выбор: ");
+                String input = in.nextLine();
+                switch (input) {
+                    case "1":
+                        PhoneBook.sortByIdAndPrint();
+                }
                 break;
             case 3:
-                System.out.println("Введите ФИО контакта для редактирования: ");
-                valueFio = in.nextLine();
-                System.out.println();
+                System.out.println("Введите ФИО контакта для поиска: ");
+//                valueFio = in.nextLine();
                 break;
             case 4:
-                System.out.println("Введите ФИО контакта для удаления");
-            default:
+                System.out.println("Введите ФИО контакта для редактирования");
+//                valueFio = in.nextLine();
+//               PhoneBook.editContact();
                 break;
+            case 5:
+//                System.out.println("Введите ФИО контакта для удаления");
+                PhoneBook.delContacts();
+                break;
+            case 6:
+                PhoneBook.saveToFile();
+                break;
+            case 7:
+                PhoneBook.loadFromFile();
+                break;
+            default:
+                return;
         }
-//        for(String s : listCont) {
-//            System.out.println(s);
-//        }
-    }
-    public static void saveContact(String fio, LocalDate dateOfBirth, String phone, String address, String dateModify) {
-        System.out.println("Контакт сохранен:"+ fio + " " + dateOfBirth + " " + phone + " " + address + " " + dateModify);
-
     }
 
-//    private List<String> inputPhoneNumbers() {
-//        List<String> numbers = new ArrayList<>();
-//        while (true) {
-//            System.out.println("Введите номер телефона (0 - для выхода): ");
-//            String number = scan.nextLine();
-//               if ("0".equals(number)) {
-//                return numbers;
-//            }
-//            numbers.add(number);
-//        }
-//    }
-}
+
+
+    }

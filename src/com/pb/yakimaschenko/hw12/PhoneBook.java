@@ -6,12 +6,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhoneBook extends Contacts {
+public class PhoneBook  {
     private static List<String> listCont = new ArrayList<>();
 
-    public PhoneBook(String fio, String dateOfBirth, List<String> phone, String address, LocalDateTime dateModify) {
-        super(fio, dateOfBirth, phone, address, dateModify);
-    }
+
 
     //поиск номера телефона
     public static void findContacts(String fio) {
