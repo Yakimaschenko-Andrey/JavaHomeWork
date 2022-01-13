@@ -34,16 +34,6 @@ public class ContactsMain {
         switch(choice){
             case 1:
                 com.pb.yakimaschenko.hw12.PhoneBook.addContact();
-//        System.out.println("Введите ФИО нового контакта: ");
-//        String valueFio = in.nextLine();
-//        System.out.println("Введите дату рождения: (дату введите в формате 1992-01-01)");
-//        LocalDate valueBrthDay = LocalDate.parse(in.next());
-//        System.out.println("Введите номер телефона: ");
-//        String valuePhone = in.next();
-//        System.out.println("Введите адресс: ");
-//        String valueAddr = in.next();
-//        LocalDateTime dateModify = LocalDateTime.now();
-//        PhoneBook.addContact();
                 break;
             case 2:
                 System.out.println("Сортировка");

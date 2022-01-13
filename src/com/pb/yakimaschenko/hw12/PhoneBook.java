@@ -19,8 +19,12 @@ import java.util.stream.Collectors;
 public class PhoneBook {
     private static List<com.pb.yakimaschenko.hw12.Contacts> listCont = new ArrayList<>();
     private static final Scanner scan = new Scanner(System.in);
+    private static final DateTimeFormatter CHANGE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final String DATA_FILE_PATH = "files/phone-book.json";
 
     private final ObjectMapper objectMapper;
+    private final List<Contacts> contacts = new ArrayList<>();
+
 
     public PhoneBook() {
         objectMapper = new ObjectMapper();
@@ -28,8 +32,10 @@ public class PhoneBook {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         // для работы с полями типа LocalDate и LocalDateTime
         SimpleModule module = new SimpleModule();
-//        module.addSerializer(LocalDate.class, new LocalDateSerializable());
+        module.addSerializer(LocalDate.class, new LocalDateSerializer());
         module.addDeserializer(LocalDate.class, new LocalDateDeserializable());
+//        module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
+//        module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
         objectMapper.registerModule(module);
     }
 
@@ -64,19 +70,23 @@ public class PhoneBook {
 
     //поиск номера телефона
     private static com.pb.yakimaschenko.hw12.Contacts findContacts(int id) {
+        listCont.stream()
+                .filter(contact -> contact.getFio().contains(contact.getFio()))
+                .collect(Collectors.toList());
 
-        for (com.pb.yakimaschenko.hw12.Contacts contact : listCont) {
-            if (id == contact.getId()) {
-                return contact;
-            }
-        }
+//        for (Contacts contact : listCont) {
+//            if (id == contact.getId()) {
+//                return contact;
+//            }
+//        }
         return null;
     }
+
 
     private static List<String> inputPhoneNumbers() {
         List<String> numbers = new ArrayList<>();
         while (true) {
-            System.out.println("Введите номер телефона (0 - для выхода): ");
+            System.out.println("(0 - для выхода): ");
             String number = scan.nextLine();
             if ("0".equals(number)) {
                 return numbers;
@@ -100,12 +110,7 @@ public class PhoneBook {
     }
 
     public static void sortByIdAndPrint() {
-        listCont.sort(new Comparator<com.pb.yakimaschenko.hw12.Contacts>() {
-            @Override
-            public int compare(com.pb.yakimaschenko.hw12.Contacts c1, com.pb.yakimaschenko.hw12.Contacts c2) {
-                return Integer.compare(c1.getId(), c2.getId());
-            }
-        });
+        listCont.sort((c1, c2) -> Integer.compare(c1.getId(), c2.getId()));
     }
 
 
@@ -126,8 +131,7 @@ public class PhoneBook {
             System.out.println(c.toString());
         }
     }
-
-
-
-
 }
+
+
+
