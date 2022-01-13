@@ -1,6 +1,9 @@
 package com.pb.yakimaschenko.hw12;
 
-import com.pb.yakimaschenko.hw11.Contacts;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -9,9 +12,26 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import java.nio.charset.StandardCharsets;
+import java.time.format.DateTimeFormatter;
+import java.util.stream.Collectors;
+
 public class PhoneBook {
-    private static List<com.pb.yakimaschenko.hw11.Contacts> listCont = new ArrayList<>();
+    private static List<com.pb.yakimaschenko.hw12.Contacts> listCont = new ArrayList<>();
     private static final Scanner scan = new Scanner(System.in);
+
+    private final ObjectMapper objectMapper;
+
+    public PhoneBook() {
+        objectMapper = new ObjectMapper();
+        // pretty printing (json с отступами)
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // для работы с полями типа LocalDate и LocalDateTime
+        SimpleModule module = new SimpleModule();
+//        module.addSerializer(LocalDate.class, new LocalDateSerializable());
+        module.addDeserializer(LocalDate.class, new LocalDateDeserializable());
+        objectMapper.registerModule(module);
+    }
 
     //Добавление контакта
     public static void addContact() {
@@ -25,7 +45,7 @@ public class PhoneBook {
         System.out.println("Введите адрес: ");
         String address = scan.nextLine();
         int id = getNextId();
-        com.pb.yakimaschenko.hw11.Contacts contact = new com.pb.yakimaschenko.hw11.Contacts(id, name, dateOfBirth, numbers, address);
+        com.pb.yakimaschenko.hw12.Contacts contact = new com.pb.yakimaschenko.hw12.Contacts(id, name, dateOfBirth, numbers, address);
         listCont.add(contact);
     }
 
@@ -33,9 +53,9 @@ public class PhoneBook {
         if (listCont.isEmpty()) {
             return 1;
         }
-        com.pb.yakimaschenko.hw11.Contacts maxIdContact = Collections.max(listCont, new Comparator<com.pb.yakimaschenko.hw11.Contacts>() {
+        com.pb.yakimaschenko.hw12.Contacts maxIdContact = Collections.max(listCont, new Comparator<com.pb.yakimaschenko.hw12.Contacts>() {
             @Override
-            public int compare(com.pb.yakimaschenko.hw11.Contacts c1, com.pb.yakimaschenko.hw11.Contacts c2) {
+            public int compare(com.pb.yakimaschenko.hw12.Contacts c1, com.pb.yakimaschenko.hw12.Contacts c2) {
                 return Integer.compare(c1.getId(), c2.getId());
             }
         });
@@ -43,9 +63,9 @@ public class PhoneBook {
     }
 
     //поиск номера телефона
-    private static com.pb.yakimaschenko.hw11.Contacts findContacts(int id) {
+    private static com.pb.yakimaschenko.hw12.Contacts findContacts(int id) {
 
-        for (com.pb.yakimaschenko.hw11.Contacts contact : listCont) {
+        for (com.pb.yakimaschenko.hw12.Contacts contact : listCont) {
             if (id == contact.getId()) {
                 return contact;
             }
@@ -70,7 +90,7 @@ public class PhoneBook {
     public static void delContacts() {
         System.out.println("Введите id контакта для удаления: ");
         int id = Integer.parseInt(scan.nextLine());
-        com.pb.yakimaschenko.hw11.Contacts contact = findContacts(id);
+        com.pb.yakimaschenko.hw12.Contacts contact = findContacts(id);
         if (contact == null) {
             System.out.println("Контакт не найден");
             return;
@@ -80,9 +100,9 @@ public class PhoneBook {
     }
 
     public static void sortByIdAndPrint() {
-        listCont.sort(new Comparator<com.pb.yakimaschenko.hw11.Contacts>() {
+        listCont.sort(new Comparator<com.pb.yakimaschenko.hw12.Contacts>() {
             @Override
-            public int compare(com.pb.yakimaschenko.hw11.Contacts c1, com.pb.yakimaschenko.hw11.Contacts c2) {
+            public int compare(com.pb.yakimaschenko.hw12.Contacts c1, com.pb.yakimaschenko.hw12.Contacts c2) {
                 return Integer.compare(c1.getId(), c2.getId());
             }
         });
@@ -99,13 +119,14 @@ public class PhoneBook {
         System.out.println(new String(Files.readAllBytes(Paths.get("contacts.data"))));
     }
     public static void loadFromFile() throws IOException, ClassNotFoundException {
-        ArrayList<com.pb.yakimaschenko.hw11.Contacts> newContacts = new ArrayList<>();
+        ArrayList<com.pb.yakimaschenko.hw12.Contacts> newContacts = new ArrayList<>();
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("contacts.data"));
-        newContacts = (ArrayList<com.pb.yakimaschenko.hw11.Contacts>)objectInputStream.readObject();
-        for (Contacts c : newContacts) {
+        newContacts = (ArrayList<com.pb.yakimaschenko.hw12.Contacts>) objectInputStream.readObject();
+        for (com.pb.yakimaschenko.hw12.Contacts c : newContacts) {
             System.out.println(c.toString());
         }
     }
+
 
 
 

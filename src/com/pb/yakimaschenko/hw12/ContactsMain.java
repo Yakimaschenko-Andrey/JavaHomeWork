@@ -1,13 +1,12 @@
 package com.pb.yakimaschenko.hw12;
 
-import com.pb.yakimaschenko.hw11.Contacts;
-import com.pb.yakimaschenko.hw11.PhoneBook;
+import com.pb.yakimaschenko.hw12.Contacts;
+import com.pb.yakimaschenko.hw12.PhoneBook;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 
 
 public class ContactsMain {
@@ -34,7 +33,7 @@ public class ContactsMain {
 
         switch(choice){
             case 1:
-                com.pb.yakimaschenko.hw11.PhoneBook.addContact();
+                com.pb.yakimaschenko.hw12.PhoneBook.addContact();
 //        System.out.println("Введите ФИО нового контакта: ");
 //        String valueFio = in.nextLine();
 //        System.out.println("Введите дату рождения: (дату введите в формате 1992-01-01)");
@@ -53,7 +52,7 @@ public class ContactsMain {
                 String input = in.nextLine();
                 switch (input) {
                     case "1":
-                        com.pb.yakimaschenko.hw11.PhoneBook.sortByIdAndPrint();
+                        com.pb.yakimaschenko.hw12.PhoneBook.sortByIdAndPrint();
                 }
                 break;
             case 3:
@@ -67,10 +66,10 @@ public class ContactsMain {
                 break;
             case 5:
 //                System.out.println("Введите ФИО контакта для удаления");
-                com.pb.yakimaschenko.hw11.PhoneBook.delContacts();
+                com.pb.yakimaschenko.hw12.PhoneBook.delContacts();
                 break;
             case 6:
-                com.pb.yakimaschenko.hw11.PhoneBook.saveToFile();
+                PhoneBook.saveToFile();
                 break;
             case 7:
                 PhoneBook.loadFromFile();

@@ -1,5 +1,6 @@
 package com.pb.yakimaschenko.hw12;
 
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ public class Contacts implements Serializable {
 
     private int id;
     private String fio;
-    private LocalDate dateOfBirth;
+    public LocalDate dateOfBirth;
     //    private String phone;
     private List<String> phone;
     private String address;
@@ -78,13 +79,13 @@ public class Contacts implements Serializable {
         this.dateModify = dateModify;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        com.pb.yakimaschenko.hw11.Contacts contact = (com.pb.yakimaschenko.hw11.Contacts) o;
-//        return id == contact.id && Objects.equals(fio, contact.fio) && Objects.equals(dateOfBirth, contact.dateOfBirth) && Objects.equals(phone, contact.phone) && Objects.equals(address, contact.address) && Objects.equals(dateModify, contact.dateModify);
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        com.pb.yakimaschenko.hw12.Contacts contact = (com.pb.yakimaschenko.hw12.Contacts) o;
+        return id == contact.id && Objects.equals(fio, contact.fio) && Objects.equals(dateOfBirth, contact.dateOfBirth) && Objects.equals(phone, contact.phone) && Objects.equals(address, contact.address) && Objects.equals(dateModify, contact.dateModify);
+    }
 
     @Override
     public String toString() {
