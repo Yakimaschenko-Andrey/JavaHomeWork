@@ -29,30 +29,31 @@ public class ContactsMain {
         System.out.println("Для совершения действия укажите соответствующую цифру:");
 
         int choice = in.nextInt(); //выберете что хотите сделать
+        String input = in.nextLine();
+
         in.nextLine();
 
         switch(choice){
             case 1:
-                com.pb.yakimaschenko.hw12.PhoneBook.addContact();
+                PhoneBook.addContact();
                 break;
             case 2:
                 System.out.println("Сортировка");
                 System.out.println("1. По id");
                 System.out.print("Выбор: ");
-                String input = in.nextLine();
                 switch (input) {
                     case "1":
-                        com.pb.yakimaschenko.hw12.PhoneBook.sortByIdAndPrint();
+                        PhoneBook.sortByIdAndPrint();
                 }
                 break;
             case 3:
                 System.out.println("Введите ФИО контакта для поиска: ");
-//                valueFio = in.nextLine();
+                PhoneBook.findContactsByFIO();
                 break;
             case 4:
                 System.out.println("Введите ФИО контакта для редактирования");
-//                valueFio = in.nextLine();
-//               PhoneBook.editContact();
+                input = in.nextLine();
+     //          PhoneBook.editContact();
                 break;
             case 5:
 //                System.out.println("Введите ФИО контакта для удаления");

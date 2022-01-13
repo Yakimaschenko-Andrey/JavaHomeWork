@@ -23,7 +23,7 @@ public class PhoneBook {
     private static final String DATA_FILE_PATH = "files/phone-book.json";
 
     private final ObjectMapper objectMapper;
-    private final List<Contacts> contacts = new ArrayList<>();
+    private static final List<Contacts> contacts = new ArrayList<>();
 
 
     public PhoneBook() {
@@ -69,18 +69,28 @@ public class PhoneBook {
     }
 
     //поиск номера телефона
-    private static com.pb.yakimaschenko.hw12.Contacts findContacts(int id) {
-        listCont.stream()
-                .filter(contact -> contact.getFio().contains(contact.getFio()))
-                .collect(Collectors.toList());
+    private static Contacts findContacts(int id) {
+//        listCont.stream()
+//                .filter(contact -> contact.getFio().contains(contact.getFio()))
+//                .collect(Collectors.toList());
 
-//        for (Contacts contact : listCont) {
-//            if (id == contact.getId()) {
-//                return contact;
-//            }
-//        }
+        for (Contacts contact : listCont) {
+            if (id == contact.getId()) {
+                return contact;
+            }
+        }
         return null;
     }
+
+    public static void findContactsByFIO() {
+        System.out.println("Введите часть ФИО: ");
+        String name = scan.nextLine();
+        List<Contacts> foundContacts = contacts.stream()
+                .filter(contact -> contact.getFio().contains(name))
+                .collect(Collectors.toList());
+    }
+
+
 
 
     private static List<String> inputPhoneNumbers() {
@@ -131,6 +141,7 @@ public class PhoneBook {
             System.out.println(c.toString());
         }
     }
+
 }
 
 
