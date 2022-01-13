@@ -52,7 +52,7 @@ public class ContactsMain {
                 break;
             case 4:
                 System.out.println("Введите ФИО контакта для редактирования");
-                input = in.nextLine();
+      //          input = in.nextLine();
      //          PhoneBook.editContact();
                 break;
             case 5:
